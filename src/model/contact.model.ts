@@ -1,4 +1,4 @@
-export interface AddressInterface {
+export interface ContactAddressInterface {
   street: string
   suite:string 
   city:string
@@ -9,19 +9,19 @@ export interface AddressInterface {
   }
 }
 
-export interface CompanyInterface {
+export interface ContactCompanyInterface {
   name:string
   catchPhrase:string
   bs:string
 }
 
-export interface UserInterface {
+export interface ContactInterface {
   id?: string,
   name: string,
   username?:string,
   email: string
-  address?: AddressInterface
+  address?: ContactAddressInterface
   phone:string
   wepsite?:string
-  company?:CompanyInterface
+  company?:ContactCompanyInterface
 }

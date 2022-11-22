@@ -1,37 +1,37 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { UserInterface } from "../model/contact.model"
+import { ContactInterface } from "../model/contact.model"
 import { providerTags } from './providerTags'
 
 
 export const contactsApi = createApi({
   reducerPath: "contactsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://jsonplaceholder.typicode.com/" }),
-  tagTypes: [providerTags.GetUser],
+  tagTypes: [providerTags.GetContacts],
   endpoints: (builder) => ({
-    getUsers: builder.query<UserInterface[], void>({
+    GetContacts: builder.query<ContactInterface[], void>({
       keepUnusedDataFor: 30,
       query: () => "/users",
-      providesTags: [providerTags.GetUser],
+      providesTags: [providerTags.GetContacts],
     }),
-    getUserDetail: builder.query<UserInterface, string>({
+    GetContactsDetail: builder.query<ContactInterface, string>({
       keepUnusedDataFor: 30,
       query: (id) => `/users/${1}`,
-      providesTags: [providerTags.GetUser],
+      providesTags: [providerTags.GetContacts],
     }),
     deleteUser: builder.mutation<void, string>({
       invalidatesTags: (result, error, arg) => {
         if(error) return []
-        return [providerTags.GetUser]
+        return [providerTags.GetContacts]
       },
       query:(id)=> ({
         url: `/users/${id}`,
         method: 'DELETE',
       })
     }),
-    addUser: builder.mutation<{}, Omit<UserInterface, "id">>({
+    addUser: builder.mutation<ContactInterface, Omit<ContactInterface, "id">>({
       invalidatesTags: (result, error, arg) => {
         if(error) return []
-        return [providerTags.GetUser]
+        return [providerTags.GetContacts]
       },
       query:(user) => ({
         url:"/users",
@@ -43,8 +43,8 @@ export const contactsApi = createApi({
 })
 
 export const {
-  useGetUsersQuery,
-  useGetUserDetailQuery,
+  useGetContactsQuery,
+  useGetContactsDetailQuery,
   useDeleteUserMutation,
   useAddUserMutation,
 } = contactsApi
