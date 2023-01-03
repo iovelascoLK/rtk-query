@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import {
   useAddUserMutation,
-  useGetUserDetailQuery,
+  useGetContactsDetailQuery,
   //useUpdateContactMutation,
-} from "../services/contactsApi"
+} from "../services/usersApi"
 import "./AddEdit.css"
 
 const initialState = {
@@ -24,7 +24,7 @@ const AddEdit = () => {
   const navigate = useNavigate()
 
   const { id } = useParams()
-  const { data, error, isFetching } = useGetUserDetailQuery(id!)
+  const { data, error, isFetching } = useGetContactsDetailQuery(id!)
 
   useEffect(() => {
     if (error && id) {

@@ -2,13 +2,13 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import {
-  useGetUsersQuery,
+  useGetContactsQuery,
   useDeleteUserMutation,
-} from "../services/contactsApi"
+} from "../services/usersApi"
 import "./Home.css"
 
 const Home = () => {
-  const { data, isLoading, error } = useGetUsersQuery()
+  const { data, isLoading, error } = useGetContactsQuery()
   const [deleteContact] = useDeleteUserMutation()
 
   useEffect(() => {

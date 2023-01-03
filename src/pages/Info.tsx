@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useGetUserDetailQuery } from "../services/contactsApi";
+import { useGetContactsDetailQuery } from "../services/usersApi";
 import "./Info.css";
 
 const Info = () => {
   const { id } = useParams();
-  const { data, error, isLoading } = useGetUserDetailQuery(id!);
+  const { data, error, isLoading } = useGetContactsDetailQuery(id!);
 
   useEffect(() => {
     if (error) {
